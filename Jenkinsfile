@@ -8,5 +8,15 @@ pipeline {
       }
     }
 
+    stage('Build') {
+      steps {
+        sh '''#!/bin/bash
+echo test'''
+      }
+    }
+
+  }
+  environment {
+    a = 'a'
   }
 }
