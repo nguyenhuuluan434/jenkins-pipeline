@@ -9,9 +9,9 @@ pipeline {
           }
         }
 
-        stage('test') {
+        stage(' source 3rd') {
           steps {
-            git(url: 'git@github.com:javaee-samples/javaee7-samples.git', branch: 'docker')
+            git(url: 'https://github.com/javaee-samples/javaee7-samples.git', branch: 'master')
           }
         }
 
