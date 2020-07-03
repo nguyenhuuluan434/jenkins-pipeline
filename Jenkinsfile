@@ -1,27 +1,15 @@
 pipeline {
-  agent any
-  stages {
-    stage('Get source') {
-      parallel {
-        stage('Get source') {
-          steps {
-            git(url: 'https://github.com/nguyenhuuluan434/jpa-specification', branch: 'master', poll: true, changelog: true)
-          }
-        }
-
-        stage(' source 3rd') {
-          steps {
-            git(url: 'https://github.com/javaee-samples/javaee7-samples.git', branch: 'master')
-          }
-        }
-
-      }
+  agent {
+    docker {
+      image 'maven:3-alpine'
+      args '-v /root/.m2:/root/.m2'
     }
 
+  }
+  stages {
     stage('Build') {
       steps {
-        sh '''#!/bin/bash
-echo test'''
+        sh 'mvn -B -DskipTests clean package'
       }
     }
 
